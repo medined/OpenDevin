@@ -1,3 +1,6 @@
+# Ignore hidden files. These is an easy to ignore locally generated files like log files. Or local temporary data files.
+*.hidden.*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
