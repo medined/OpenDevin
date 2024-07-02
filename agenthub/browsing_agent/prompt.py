@@ -381,9 +381,9 @@ class MainPrompt(Shrinkable):
         self.flags = flags
         self.history = History(obs_history, actions, memories, thoughts, flags)
         if self.flags.enable_chat:
-            self.instructions: Union[ChatInstructions, GoalInstructions] = (
-                ChatInstructions(obs_history[-1]['chat_messages'])
-            )
+            self.instructions: Union[
+                ChatInstructions, GoalInstructions
+            ] = ChatInstructions(obs_history[-1]['chat_messages'])
         else:
             if (
                 'chat_messages' in obs_history[-1]

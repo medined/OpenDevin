@@ -88,7 +88,8 @@ def test_load_from_old_style_env(monkeypatch, default_config):
 def test_load_from_new_style_toml(default_config, temp_toml_file):
     # Test loading configuration from a new-style TOML file
     with open(temp_toml_file, 'w', encoding='utf-8') as toml_file:
-        toml_file.write("""
+        toml_file.write(
+            """
 [llm]
 model = "test-model"
 api_key = "toml-api-key"
@@ -99,7 +100,8 @@ memory_enabled = true
 
 [core]
 workspace_base = "/opt/files2/workspace"
-""")
+"""
+        )
 
     load_from_toml(default_config, temp_toml_file)
 
@@ -126,7 +128,8 @@ workspace_base = "/opt/files2/workspace"
 def test_env_overrides_toml(monkeypatch, default_config, temp_toml_file):
     # Test that environment variables override TOML values using monkeypatch
     with open(temp_toml_file, 'w', encoding='utf-8') as toml_file:
-        toml_file.write("""
+        toml_file.write(
+            """
 [llm]
 model = "test-model"
 api_key = "toml-api-key"
@@ -135,7 +138,8 @@ api_key = "toml-api-key"
 workspace_base = "/opt/files3/workspace"
 sandbox_type = "local"
 disable_color = true
-""")
+"""
+        )
 
     monkeypatch.setenv('LLM_API_KEY', 'env-api-key')
     monkeypatch.setenv('WORKSPACE_BASE', 'UNDEFINED')

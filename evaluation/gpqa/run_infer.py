@@ -372,7 +372,9 @@ if __name__ == '__main__':
         json.dump(metadata, f)
 
     # LIMIT EVALUATION
-    eval_n_limit = args.eval_n_limit  # NOTE: This is useful for debugging and testing using a smaller subset of the dataset
+    eval_n_limit = (
+        args.eval_n_limit
+    )  # NOTE: This is useful for debugging and testing using a smaller subset of the dataset
     if eval_n_limit:
         # start_index = 20
         # gpqa_dataset = gpqa_dataset.iloc[start_index:]

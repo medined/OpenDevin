@@ -64,9 +64,9 @@ def get_observation_message(obs) -> dict[str, str] | None:
         splitted = content.split('\n')
         for i, line in enumerate(splitted):
             if '![image](data:image/png;base64,' in line:
-                splitted[i] = (
-                    '![image](data:image/png;base64, ...) already displayed to user'
-                )
+                splitted[
+                    i
+                ] = '![image](data:image/png;base64, ...) already displayed to user'
         content = '\n'.join(splitted)
         content = truncate_content(content)
         return {'role': 'user', 'content': content}
@@ -156,9 +156,9 @@ class CodeActSWEAgent(Agent):
         if latest_user_message:
             if latest_user_message['content'].strip() == '/exit':
                 return AgentFinishAction()
-            latest_user_message['content'] += (
-                f'\n\nENVIRONMENT REMINDER: You have {state.max_iterations - state.iteration} turns left to complete the task.'
-            )
+            latest_user_message[
+                'content'
+            ] += f'\n\nENVIRONMENT REMINDER: You have {state.max_iterations - state.iteration} turns left to complete the task.'
 
         response = self.llm.completion(
             messages=messages,

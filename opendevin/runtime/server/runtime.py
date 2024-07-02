@@ -84,9 +84,13 @@ class ServerRuntime(Runtime):
                     output = '[Package installed successfully]'
                     if "{'status': 'ok', 'restart': True}" != obs.content.strip():
                         print(obs.content)
-                        output += '\n[But failed to restart the kernel to load the package]'
+                        output += (
+                            '\n[But failed to restart the kernel to load the package]'
+                        )
                     else:
-                        output += '\n[Kernel restarted successfully to load the package]'
+                        output += (
+                            '\n[Kernel restarted successfully to load the package]'
+                        )
 
                     # re-init the kernel after restart
                     if action.kernel_init_code:
@@ -102,7 +106,10 @@ class ServerRuntime(Runtime):
                             'cat /tmp/opendevin_jupyter_init.py | execute_cli',
                             background=False,
                         )
-            elif is_single_package and f'Requirement already satisfied: {package_names}' in output:
+            elif (
+                is_single_package
+                and f'Requirement already satisfied: {package_names}' in output
+            ):
                 output = '[Package already installed]'
         return IPythonRunCellObservation(content=output, code=action.code)
 
@@ -142,7 +149,10 @@ class ServerRuntime(Runtime):
                 print(output)
                 if 'Successfully installed' in output:
                     output = '[Package installed successfully]'
-                elif is_single_package and f'Requirement already satisfied: {package_names}' in output:
+                elif (
+                    is_single_package
+                    and f'Requirement already satisfied: {package_names}' in output
+                ):
                     output = '[Package already installed]'
             return CmdOutputObservation(
                 command_id=-1, content=str(output), command=command, exit_code=exit_code

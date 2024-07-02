@@ -8,6 +8,7 @@ from opendevin.events.action import (
 )
 
 from opendevin.events.serialization.action import action_from_dict
+
 ACTION_PROMPT = """
 You're a thoughtful robot. Your main task is this:
 %(task)s

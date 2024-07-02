@@ -330,8 +330,10 @@ def _test_sandbox_jupyter_agentskills_fileop_pwd_impl(box):
         )
         print(output)
         assert exit_code == 0, 'The exit code should be 0 for ' + box.__class__.__name__
-        assert output.strip().split('\r\n') == (
-            """
+        assert (
+            output.strip().split('\r\n')
+            == (
+                """
 [Your proposed edit has introduced new syntax error(s). Please understand the errors and retry your edit command.]
 ERRORS:
 hello.py:1:3: E999 IndentationError: unexpected indent
@@ -349,7 +351,10 @@ Your changes have NOT been applied. Please fix your edit command and try again.
 You either need to 1) Specify the correct start/end line arguments or 2) Correct your edit code.
 DO NOT re-run the same failed edit command. Running it again will lead to the same error.
 """
-        ).strip().split('\n')
+            )
+            .strip()
+            .split('\n')
+        )
 
     # edit file with correct indentation
     exit_code, output = box.execute(
@@ -357,14 +362,19 @@ DO NOT re-run the same failed edit command. Running it again will lead to the sa
     )
     print(output)
     assert exit_code == 0, 'The exit code should be 0 for ' + box.__class__.__name__
-    assert output.strip().split('\r\n') == (
-        """
+    assert (
+        output.strip().split('\r\n')
+        == (
+            """
 [File: /workspace/test/hello.py (2 lines total after edit)]
 1|print("hello world")
 2|
 [File updated. Please review the changes and make sure they are correct (correct indentation, no duplicate lines, etc). Edit the file again if necessary.]
 """
-    ).strip().split('\n')
+        )
+        .strip()
+        .split('\n')
+    )
 
     exit_code, output = box.execute('rm -rf /workspace/*')
     assert exit_code == 0, 'The exit code should be 0 for ' + box.__class__.__name__
@@ -377,7 +387,9 @@ def test_sandbox_jupyter_agentskills_fileop_pwd(temp_dir):
         config, 'workspace_mount_path', new=temp_dir
     ), patch.object(config, 'run_as_devin', new=True), patch.object(
         config, 'sandbox_type', new='ssh'
-    ), patch.object(config, 'enable_auto_lint', new=True):
+    ), patch.object(
+        config, 'enable_auto_lint', new=True
+    ):
         assert config.enable_auto_lint
         for box in [DockerSSHBox()]:
             _test_sandbox_jupyter_agentskills_fileop_pwd_impl(box)
@@ -396,7 +408,9 @@ def test_agnostic_sandbox_jupyter_agentskills_fileop_pwd(temp_dir):
             config, 'sandbox_type', new='ssh'
         ), patch.object(
             config, 'sandbox_container_image', new=base_sandbox_image
-        ), patch.object(config, 'enable_auto_lint', new=False):
+        ), patch.object(
+            config, 'enable_auto_lint', new=False
+        ):
             assert not config.enable_auto_lint
             for box in [DockerSSHBox()]:
                 _test_sandbox_jupyter_agentskills_fileop_pwd_impl(box)

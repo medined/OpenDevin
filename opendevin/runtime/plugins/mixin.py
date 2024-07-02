@@ -10,13 +10,16 @@ class SandboxProtocol(Protocol):
     # https://stackoverflow.com/questions/51930339/how-do-i-correctly-add-type-hints-to-mixin-classes
 
     @property
-    def initialize_plugins(self) -> bool: ...
+    def initialize_plugins(self) -> bool:
+        ...
 
     def execute(
         self, cmd: str, stream: bool = False
-    ) -> tuple[int, str | CancellableStream]: ...
+    ) -> tuple[int, str | CancellableStream]:
+        ...
 
-    def copy_to(self, host_src: str, sandbox_dest: str, recursive: bool = False): ...
+    def copy_to(self, host_src: str, sandbox_dest: str, recursive: bool = False):
+        ...
 
 
 def _source_bashrc(sandbox: SandboxProtocol):

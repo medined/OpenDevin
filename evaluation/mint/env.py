@@ -27,9 +27,9 @@ class SimplifiedEnv:
         }
         # check if agent_state has attribute turn_info set
         if hasattr(self.agent_state, 'propose_solution_count'):
-            agent_action_count['propose_solution'] = (
-                self.agent_state.propose_solution_count
-            )
+            agent_action_count[
+                'propose_solution'
+            ] = self.agent_state.propose_solution_count
 
         self.task_state = TaskState(agent_action_count=agent_action_count)
 

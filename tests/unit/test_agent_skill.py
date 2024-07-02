@@ -1076,12 +1076,14 @@ def test_parse_latex(tmp_path):
     # Create a LaTeX file with some content
     test_latex_path = tmp_path / 'test.tex'
     with open(test_latex_path, 'w') as f:
-        f.write(r"""
+        f.write(
+            r"""
         \documentclass{article}
         \begin{document}
         Hello, this is a test LaTeX document.
         \end{document}
-        """)
+        """
+        )
 
     old_stdout = sys.stdout
     sys.stdout = io.StringIO()
